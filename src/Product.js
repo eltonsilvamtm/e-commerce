@@ -30,7 +30,7 @@ function Product({id, title, image, price, rating}) {
         <small>$</small>
         <strong>{price}</strong>
         
-        <div className='product__rating'>
+        <div className='product__rating' key={rating}>
             {/* creates an array of stars (the number of stars to be rendered is passed by the homepage)*/}
             {Array(rating).fill().map((_,i) => (<p>⭐</p>))}
             </div>

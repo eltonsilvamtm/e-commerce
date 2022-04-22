@@ -1,11 +1,31 @@
-import React from 'react'
+import {React, useState} from 'react'
 import './Subtotal.scss'
 import CurrencyFormat from "react-currency-format"
 import {useStateValue} from "./StateProvider"
 import {getBasketTotal} from "./reducer"
+import {useNavigate} from 'react-router-dom'
 
 function Subtotal() {
     const [{basket}, dispatch] = useStateValue();
+    const navigate = useNavigate();
+    const [disabled, setDisabled] = useState(true);
+    
+    // function handlePriceChange(value) {
+    //     console.log(value)
+    //     if(value > 0){
+    //         setDisabled(false);
+    //     }
+    //disabled={disabled}
+        
+    //   };
+    
+    
+    //   const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     alert(`Your state values: \n 
+    //             text: ${text} \n 
+    //             You can replace this alert with your process`);
+    //   };
 
   return (
     <div className="subtotal">
@@ -26,9 +46,13 @@ function Subtotal() {
             displayType={"text"}
             thousandSeparator={true}
             prefix={"€"}
+            //onValueChange={(values) => {handlePriceChange(values)}}
         />
+        
 
-        <button className="subtotal__button">Proceed to Checkout</button>
+        
+        <button onClick={e => navigate('/payment')} className="subtotal__button">Proceed to Checkout
+            </button>
     </div>
   )
 }
